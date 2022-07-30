@@ -28,7 +28,6 @@ for node in selectedNodes:
 
 
 dot = jk_smallgraph.io.GraphvizIO.convert(g, "some title")
-dot.format = "png"
 dot.render(filename=os.path.join("output", "sometitle2.dot"), format="png")
 
 
@@ -38,7 +37,6 @@ g.removeNodes(nodesToRemove)
 
 
 dot = jk_smallgraph.io.GraphvizIO.convert(g, "some title")
-dot.format = "png"
 dot.render(filename=os.path.join("output", "sometitle3.dot"), format="png")
 
 
