@@ -19,7 +19,7 @@ setup(
 	author = "Jürgen Knauth",
 	author_email = "pubsrc@binary-overflow.de",
 	classifiers = [
-		"Development Status :: 3 - Alpha",
+		"Development Status :: 4 - Beta",
 		"License :: OSI Approved :: Apache Software License",
 		"Programming Language :: Python :: 3",
 	],
@@ -27,9 +27,11 @@ setup(
 	include_package_data = True,
 	install_requires = [
 		"jk_json",
+		"jk_typing",
+		"graphviz",
 	],
 	keywords = [
-		"...",
+		"graph",
 	],
 	license = "Apache2",
 	name = "jk_smallgraph",
