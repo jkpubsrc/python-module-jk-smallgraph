@@ -6,3 +6,5 @@ src/*.egg-info/
 .vscode
 examples/*.log
 testing/output/*
+**/*.OLD
+*.sh

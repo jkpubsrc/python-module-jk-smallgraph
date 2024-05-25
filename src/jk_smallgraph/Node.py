@@ -24,9 +24,11 @@ class Node(INode):
 	#
 	@jk_typing.checkFunctionSignature()
 	def __init__(self, graph, nodeID:int, name:str):
-		self._graph = graph
-		self._nodeID = nodeID
-		self._name = name
+		self.__graph = graph
+		self.__nodeID = nodeID
+		self.__name = name
+		self.__tag = None
+
 		self._incomingLinks = {}
 		self._outgoingLinks = {}
 	#
@@ -37,12 +39,12 @@ class Node(INode):
 
 	@property
 	def name(self) -> str:
-		return self._name
+		return self.__name
 	#
 
 	@property
 	def nodeID(self) -> int:
-		return self._nodeID
+		return self.__nodeID
 	#
 
 	@property
@@ -55,6 +57,16 @@ class Node(INode):
 		return len(self._outgoingLinks) == 0
 	#
 
+	@property
+	def tag(self) -> typing.Any:
+		return self.__tag
+	#
+
+	@tag.setter
+	def tag(self, tag:typing.Any):
+		self.__tag = tag
+	#
+
 	################################################################################################################################
 	## Helper Methods
 	################################################################################################################################
@@ -64,20 +76,20 @@ class Node(INode):
 	################################################################################################################################
 
 	def __str__(self):
-		return "Node<({}, {})>".format(self._nodeID, repr(self._name))
+		return "Node<({}, {})>".format(self.__nodeID, repr(self.__name))
 	#
 
 	def __repr__(self):
-		return "Node<({}, {})>".format(self._nodeID, repr(self._name))
+		return "Node<({}, {})>".format(self.__nodeID, repr(self.__name))
 	#
 
 	def __hash__(self) -> int:
-		return self._nodeID.__hash__()
+		return self.__nodeID.__hash__()
 	#
 
 	def __eq__(self, other: object) -> bool:
 		if isinstance(other, Node):
-			return other._nodeID == self._nodeID
+			return other.__nodeID == self.__nodeID
 		else:
 			return False
 	#

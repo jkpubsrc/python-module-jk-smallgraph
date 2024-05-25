@@ -36,6 +36,16 @@ class ILink(object):
 		raise NotImplementedError()
 	#
 
+	@property
+	def tag(self) -> typing.Any:
+		raise NotImplementedError()
+	#
+
+	@tag.setter
+	def tag(self, tag:typing.Any):
+		raise NotImplementedError()
+	#
+
 	################################################################################################################################
 	## Helper Methods
 	################################################################################################################################

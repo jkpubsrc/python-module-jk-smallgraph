@@ -95,7 +95,7 @@ class DirectedGraph(object):
 
 	#
 	# Create a new node.
-	# 
+	#
 	# You need to provide a unique name for the node.
 	# If a node with this name already exists an exception is thrown.
 	#
@@ -132,7 +132,7 @@ class DirectedGraph(object):
 	#
 
 	@jk_typing.checkFunctionSignature()
-	def getNode(self, nodeIdentifier:typing.Union[str,int]) -> Node:
+	def getNode(self, nodeIdentifier:typing.Union[str,int]) -> typing.Union[Node,None]:
 		if isinstance(nodeIdentifier, str):
 			return self.__nodesByName.get(nodeIdentifier)
 		else:
@@ -208,6 +208,9 @@ class DirectedGraph(object):
 		return link
 	#
 
+	#
+	# Iterate over all nodes connected by outgoing links.
+	#
 	def iterateConnectedNodes(self,
 			nodeIdentifiers:typing.Union[str,int,Node,typing.Iterable[typing.Union[int,str,Node]]],
 			bIncludedStart:bool = False,
@@ -249,6 +252,26 @@ class DirectedGraph(object):
 		curNode = self.__getNodeE(nodeIdentifier)
 
 		for link in curNode._outgoingLinks.values():
+			assert isinstance(link, Link)
+			yield link.toNode
+	#
+
+	def iterateIncomingLinks(self,
+			nodeIdentifier:typing.Union[str,int,Node],
+		) -> typing.Iterable[Link]:
+
+		curNode = self.__getNodeE(nodeIdentifier)
+
+		yield from curNode._incomingLinks.values()
+	#
+
+	def iterateIncomingNodes(self,
+			nodeIdentifier:typing.Union[str,int,Node],
+		) -> typing.Iterable[Node]:
+
+		curNode = self.__getNodeE(nodeIdentifier)
+
+		for link in curNode._incomingLinks.values():
 			assert isinstance(link, Link)
 			yield link.toNode
 	#

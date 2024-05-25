@@ -25,10 +25,11 @@ class Link(ILink):
 	#
 	@jk_typing.checkFunctionSignature()
 	def __init__(self, graph, linkID:int, fromNode:INode, toNode:INode):
-		self._graph = graph
-		self._linkID = linkID
-		self._fromNode = fromNode
-		self._toNode = toNode
+		self.__graph = graph
+		self.__linkID = linkID
+		self.__fromNode = fromNode
+		self.__toNode = toNode
+		self.__tag = None
 	#
 
 	################################################################################################################################
@@ -37,17 +38,27 @@ class Link(ILink):
 
 	@property
 	def linkID(self) -> int:
-		return self._linkID
+		return self.__linkID
 	#
 
 	@property
 	def fromNode(self) -> INode:
-		return self._fromNode
+		return self.__fromNode
 	#
 
 	@property
 	def toNode(self) -> INode:
-		return self._toNode
+		return self.__toNode
+	#
+
+	@property
+	def tag(self) -> typing.Any:
+		return self.__tag
+	#
+
+	@tag.setter
+	def tag(self, tag:typing.Any):
+		self.__tag = tag
 	#
 
 	################################################################################################################################
@@ -59,15 +70,15 @@ class Link(ILink):
 	################################################################################################################################
 
 	def __str__(self):
-		return "Link<({}, {}->{})>".format(self._linkID, repr(self._fromNode._name), repr(self._toNode._name))
+		return "Link<({}, {}->{})>".format(self.__linkID, repr(self.__fromNode._name), repr(self.__toNode._name))
 	#
 
 	def __repr__(self):
-		return "Link<({}, {}->{})>".format(self._linkID, repr(self._fromNode._name), repr(self._toNode._name))
+		return "Link<({}, {}->{})>".format(self.__linkID, repr(self.__fromNode._name), repr(self.__toNode._name))
 	#
 
 	def __hash__(self) -> int:
-		return self._linkID.__hash__()
+		return self.__linkID.__hash__()
 	#
 
 #
